@@ -1,3 +1,4 @@
+import { Diretor } from 'src/app/components/models/controle/diretor';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,6 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./diretor-update.component.css']
 })
 export class DiretorUpdateComponent implements OnInit {
+
+  diretor: Diretor ={
+
+    id:0,
+    nome:""
+  };
 
   constructor() { }
 

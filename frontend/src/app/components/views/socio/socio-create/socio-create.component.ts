@@ -1,3 +1,5 @@
+import { Cliente } from './../../../models/atendimento/cliente';
+import { Socio } from './../../../models/atendimento/socio';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SocioCreateComponent implements OnInit {
 
+  socio!:Socio;
+  cliente!:Cliente;
+  clientes!:Cliente[];
+
   constructor() { }
 
   ngOnInit(): void {
+
+    this.clientes = [
+      {numinscricao: 0, nome:'Cliente01', estahativo: true, datanascimento: new Date(), sexo:'m' }
+    ];
+
+    this.cliente={numinscricao: 0, nome:'Cliente01', estahativo: true, datanascimento: new Date(), sexo:'m' };
+
+    this.socio={
+      cpf:'',
+      endereco: '',
+      tel:'',
+      cliente: this.cliente
+    };
   }
 
 }

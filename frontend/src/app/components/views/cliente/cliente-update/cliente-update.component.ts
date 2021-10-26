@@ -1,3 +1,4 @@
+import { Cliente } from 'src/app/components/models/atendimento/cliente';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cliente-update.component.css']
 })
 export class ClienteUpdateComponent implements OnInit {
+
+  cliente!:Cliente;
 
   constructor() { }
 

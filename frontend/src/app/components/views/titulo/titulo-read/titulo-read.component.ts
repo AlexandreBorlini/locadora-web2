@@ -9,7 +9,7 @@ import { Titulo } from 'src/app/components/models/controle/titulo';
 export class TituloReadComponent implements OnInit {
 
   titulos!: Titulo[];
-  colunas = ['ID', 'Ano', 'Nome', 'Sinopse', 'Categoria','Acao']
+  colunas = ['ID', 'Ano', 'Nome', 'Sinopse', 'Categoria', 'Diretor', 'Classe', 'Atores','Acao']
 
   constructor() { }
 
@@ -21,7 +21,10 @@ export class TituloReadComponent implements OnInit {
         ano: new Date(),
         nome:'Nome01',
         sinopse:'Sinopse01',
-        categoria:'categoria01'
+        categoria:'categoria01',
+        diretor:'Diretor01',
+        classe:'Classe01',
+        atores:['Monga', 'Gorila']
       }
     ]
   }

@@ -1,1 +1,57 @@
-<p>cliente-create works!</p>
+<mat-card>
+    <mat-card-title>Novo Cliente</mat-card-title>
+    <form>
+
+        <mat-form-field>
+            <span>Nome: </span>
+            <input matInput placeholder="Nome"
+            [(ngModel)]="cliente.nome" name="name"
+            style="margin-left: 4px;"> 
+        </mat-form-field>
+
+        <mat-form-field style="margin-left: 20px;">
+            <span>Numero de Inscrição: </span>
+            <input matInput placeholder="Valor"
+            [(ngModel)]="cliente.numinscricao" name="numinscricao"
+            type="number"
+            style="margin-left: 4px;"> 
+        </mat-form-field>
+
+        <mat-form-field style="margin-left: 20px;">
+            <span>Data de Nascimento: </span>
+            <input
+            [(ngModel)]="cliente.datanascimento" 
+            name="datanascimento"
+            type="date"
+            style="margin-left: 4px;"> 
+        </mat-form-field>
+    
+        <mat-form-field style="margin-left: 20px;">
+            <span>Sexo: </span>
+            <input
+            [(ngModel)]="cliente.sexo" 
+            name="sexo"
+            type="text"
+            style="margin-left: 4px;"> 
+        </mat-form-field>
+
+        <mat-form-field style="margin-left: 20px;">
+            <span>Está Ativo: </span>
+            <input
+            [(ngModel)]="cliente.estahativo" 
+            name="ativo"
+            type="checkbox"
+            style="margin-left: 4px;"> 
+        </mat-form-field>
+
+    </form>
+
+    <button mat-raised-button color="primary">
+        Salvar
+    </button>
+    
+    <button mat-raised-button color="primary" 
+    style="margin-left: 4px; margin-top: 6px;">
+        Cancelar
+    </button>
+</mat-card>

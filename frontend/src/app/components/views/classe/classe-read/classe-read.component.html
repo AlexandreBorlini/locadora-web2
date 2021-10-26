@@ -23,14 +23,14 @@
       <!-- Prazo Devolucao Column -->
       <ng-container matColumnDef="PrazoDevolucao">
         <th mat-header-cell *matHeaderCellDef>Prazo Devolução</th>
-        <td mat-cell *matCellDef="let row">{{row.prazodevolucao}}</td>
+        <td mat-cell *matCellDef="let row">{{row.prazodevolucao.toDateString()}}</td>
       </ng-container>      
   
       <!-- Action Column -->
       <ng-container matColumnDef="Acao">
         <th mat-header-cell *matHeaderCellDef>Ações</th>
         <td mat-cell *matCellDef="let row">
-            <a>
+            <a routerLink="/classe-update">
                 <i class="material-icons edit">
                     edit
                 </i>

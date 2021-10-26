@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +18,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
 
 import { AtorCreateComponent } from './components/views/ator/ator-create/ator-create.component';
 import { AtorReadComponent } from './components/views/ator/ator-read/ator-read.component';
@@ -103,7 +105,9 @@ import { LocacaoUpdateComponent } from './components/views/locacao/locacao-updat
     MatButtonModule,
     MatTableModule,
     FormsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    CommonModule,
+    MatSelectModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

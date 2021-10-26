@@ -1,1 +1,73 @@
-<p>locacao-create works!</p>
+<mat-card>
+    <mat-card-title>Nova Locação</mat-card-title>
+    <form>
+        
+        <mat-form-field>
+            <span>Valor Cobrado: </span>
+            <input matInput placeholder="Valor"
+            [(ngModel)]="locacao.valorCobrado" name="valor"
+            type="number"
+            style="margin-left: 4px;"> 
+        </mat-form-field>
+
+        <mat-form-field style="margin-left: 20px;">
+            <span>Data Devolução Efetiva: </span>
+            <input matInput placeholder="Valor"
+            [(ngModel)]="locacao.dataDevolucaoEfetiva" name="dataDevolucaoEfetiva"
+            type="date"
+            style="margin-left: 4px;"> 
+        </mat-form-field>
+
+        <mat-form-field style="margin-left: 20px;">
+            <span>Data Devolução Prevista: </span>
+            <input
+            [(ngModel)]="locacao.dataDevolucaoPrevista" 
+            name="dataDevolucaoPrevista"
+            type="date"
+            style="margin-left: 4px;"> 
+        </mat-form-field>
+    
+        <mat-form-field>
+            <span>Data Locação: </span>
+            <input
+            [(ngModel)]="locacao.datalocacao" 
+            name="dataLocacao"
+            type="date"
+            style="margin-left: 4px;"> 
+        </mat-form-field>
+<br>
+        <mat-form-field>
+            <span>Multa Cobrada: </span>
+            <input matInput
+            [(ngModel)]="locacao.multaCobrada" name="multaCobrada"
+            style="margin-left: 4px;"> 
+        </mat-form-field>
+
+        <mat-form-field style="margin-left: 20px;">
+            <span>Item: </span>
+            <select>
+                <option *ngFor="let item of itens" [value]="item.id">
+                  {{item.titulo.nome}}
+                </option>
+            </select>
+        </mat-form-field> 
+
+        <mat-form-field>
+            <span>Cliente</span>
+            <select>
+                <option *ngFor="let cliente of clientes" [value]="cliente.numinscricao">
+                  {{cliente.nome}}
+                </option>
+            </select>
+        </mat-form-field>
+
+    </form>
+</mat-card>
+<button mat-raised-button color="primary">
+    Salvar
+</button>
+
+<button mat-raised-button color="primary" 
+style="margin-left: 4px; margin-top: 6px;">
+    Cancelar
+</button>

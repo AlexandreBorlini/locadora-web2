@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Cliente } from 'src/app/components/models/atendimento/cliente';
 
 @Component({
   selector: 'app-cliente-create',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cliente-create.component.css']
 })
 export class ClienteCreateComponent implements OnInit {
+
+  cliente!:Cliente;
 
   constructor() { }
 

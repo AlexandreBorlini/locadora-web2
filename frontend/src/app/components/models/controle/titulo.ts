@@ -3,5 +3,8 @@ export interface Titulo{
     ano: Date,
     nome: String,
     sinopse: String,
-    categoria: String
+    categoria: String,
+    diretor:String,
+    classe:String,
+    atores:Array<String>
 };

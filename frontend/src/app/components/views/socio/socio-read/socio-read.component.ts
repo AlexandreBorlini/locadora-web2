@@ -1,5 +1,6 @@
 import { Socio } from './../../../models/atendimento/socio';
 import { Component, OnInit } from '@angular/core';
+import { Cliente } from 'src/app/components/models/atendimento/cliente';
 
 @Component({
   selector: 'app-socio-read',
@@ -9,16 +10,26 @@ import { Component, OnInit } from '@angular/core';
 export class SocioReadComponent implements OnInit {
 
   socios!: Socio[];
-  colunas = ['Cpf', 'Endereço', 'Telefone', 'Acao']
+  cliente!: Cliente;
+  colunas = ['Cpf', 'Endereço', 'Telefone', 'Nome', 'Acao']
 
   constructor() { }
 
   ngOnInit(): void {
 
+    this.cliente = {
+      numinscricao: 0,
+      nome: 'String',
+      estahativo: true,
+      datanascimento: new Date(2001, 1),
+      sexo: 'm'
+    }
+
     this.socios = [{
       cpf:'cpf01',
       endereco:'Endereco01',
-      tel:'Telefone01'
+      tel:'Telefone01',
+      cliente: this.cliente
     }]
   }
 

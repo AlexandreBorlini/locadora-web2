@@ -1,1 +1,72 @@
-<p>titulo-create works!</p>
+<mat-card>
+    <mat-card-title>Novo Título</mat-card-title>
+    <form>
+
+        <mat-form-field>
+            <span>Nome: </span>
+            <input matInput placeholder="Nome"
+            [(ngModel)]="titulo.nome" name="name"
+            style="margin-left: 4px;"> 
+        </mat-form-field>
+
+        <mat-form-field style="margin-left: 20px;">
+            <span>Ano: </span>
+            <input matInput placeholder="Valor"
+            [(ngModel)]="titulo.ano" name="numinscricao"
+            type="date"
+            style="margin-left: 4px;"> 
+        </mat-form-field>
+
+        <mat-form-field style="margin-left: 20px;">
+            <span>Sinopse: </span>
+            <input
+            [(ngModel)]="titulo.sinopse" 
+            name="sinopse"
+            type="text"
+            style="margin-left: 4px;"> 
+        </mat-form-field>
+    
+        <mat-form-field>
+            <span>Categoria: </span>
+            <input
+            [(ngModel)]="titulo.categoria" 
+            name="categoria"
+            type="text"
+            style="margin-left: 4px;"> 
+        </mat-form-field>
+
+        <mat-form-field style="margin-left: 20px;">
+            <span>Diretor: </span>
+            <select>
+                <option *ngFor="let diretor of diretores" [value]="diretor.id">
+                  {{diretor.nome}}
+                </option>
+            </select>
+        </mat-form-field> 
+
+        <mat-form-field>
+            <span>Classe</span>
+            <select>
+                <option *ngFor="let classe of classes" [value]="classe.id">
+                  {{classe.nome}}
+                </option>
+            </select>
+        </mat-form-field> <br>
+
+        <mat-form-field>
+        <label for="atoresSelecionados">Atores: </label>
+        <select multiple [(ngModel)]="atoresSelecionados" name="atoresSelecionados" id="atoresSelecionados" style="height: 200px; width: 150px;">
+            <option *ngFor="let ator of atores" [value]="ator.id">{{ator.nome}}</option>
+        </select>
+    </mat-form-field>
+
+    </form>
+</mat-card>
+<button mat-raised-button color="primary">
+    Salvar
+</button>
+
+<button mat-raised-button color="primary" 
+style="margin-left: 4px; margin-top: 6px;">
+    Cancelar
+</button>

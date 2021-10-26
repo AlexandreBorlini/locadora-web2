@@ -1,3 +1,4 @@
+import { Ator } from './../../../models/controle/ator';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,6 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ator-update.component.css']
 })
 export class AtorUpdateComponent implements OnInit {
+
+
+  ator: Ator ={
+
+    id:0,
+    nome:""
+  };
 
   constructor() { }
 
