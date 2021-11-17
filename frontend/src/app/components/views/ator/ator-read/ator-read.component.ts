@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AtorService } from 'src/app/components/service/ator.service';
 import { Ator } from '../../../models/controle/ator';
 
 @Component({
@@ -8,10 +10,11 @@ import { Ator } from '../../../models/controle/ator';
 })
 export class AtorReadComponent implements OnInit {
 
-  atores!: Ator[];
+
+  atores: Ator[] = new Array();
   colunas = ['ID', 'Nome', 'Acao']
 
-  constructor() { }
+  constructor(private atorService: AtorService) { }
 
   ngOnInit(): void {
 
@@ -19,6 +22,10 @@ export class AtorReadComponent implements OnInit {
       nome: "Ator01",
       id:0
     }]
+  }
+
+  delete(id: String): void{
+    this.atorService.delete(id);
   }
 
 }
