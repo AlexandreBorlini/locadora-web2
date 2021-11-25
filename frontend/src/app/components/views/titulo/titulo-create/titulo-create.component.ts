@@ -3,6 +3,11 @@ import { Ator } from './../../../models/controle/ator';
 import { Titulo } from './../../../models/controle/titulo';
 import { Component, OnInit } from '@angular/core';
 import { Diretor } from 'src/app/components/models/controle/diretor';
+import { Router } from '@angular/router';
+import { TituloService } from 'src/app/components/service/titulo.service';
+import { DiretorService } from 'src/app/components/service/diretor.service';
+import { ClasseService } from 'src/app/components/service/classe.service';
+import { AtorService } from 'src/app/components/service/ator.service';
 
 @Component({
   selector: 'app-titulo-create',
@@ -17,8 +22,8 @@ export class TituloCreateComponent implements OnInit {
     ano: new Date(),
     sinopse: "",
     categoria: "",
-    diretor: "",
-    classe: "",
+    diretor: undefined,
+    classe: undefined,
     atores: []
   };
   diretores:Diretor[] = new Array();
@@ -27,29 +32,28 @@ export class TituloCreateComponent implements OnInit {
 
   atoresSelecionados: any;
 
-  constructor() { }
+  constructor(private router: Router, private tituloService: TituloService, 
+    private diretorService: DiretorService, private classeService: ClasseService, private atorService: AtorService) { }
 
   ngOnInit(): void {
-
-    this.diretores = [
-      {
-        id:0, nome:"nome01"
-      }
-    ];
-
-    this.classes = [{
-      id:0, nome:'Classe01', valor:22, prazodevolucao: new Date()
-    }];
-
-    this.atores = [{
-      id:0,
-      nome:'Ator01'
-    },
-    {
-      id:1,
-      nome:'Ator02'
-    }
-  ];
+    this.diretorService.read().subscribe(diretores =>{
+      this.diretores = diretores;
+  });
+  this.classeService.read().subscribe(classes =>{
+    this.classes = classes;
+  });
+  this.atorService.read().subscribe(atores =>{
+    this.atores = atores;
+  });
+  }
+  
+  criar():void{
+    console.log(this.titulo);
+    this.tituloService.create(this.titulo);
+    this.router.navigate(['/titulo']);
   }
 
+  cancelar():void{
+    this.router.navigate(['/titulo']);
+  }
 }

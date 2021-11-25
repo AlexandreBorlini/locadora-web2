@@ -12,9 +12,14 @@ export class TituloService {
 
   constructor(private http: HttpClient) { }
 
-  create(titulo:Titulo):Observable<Titulo>{
+  create(titulo:Titulo):void{
 
-    return this.http.post<Titulo>(this.urlBase, titulo);
+    console.log(titulo);
+
+    this.http.post<Titulo>(this.urlBase, titulo).subscribe(
+      response => console.log(JSON.stringify(response)),
+      error => console.log(error)
+    );
   }
 
   read():Observable<Titulo[]>{

@@ -13,9 +13,14 @@ export class ClasseService {
   constructor(private http: HttpClient) { }
 
   
-  create(classe:Classe):Observable<Classe>{
+  create(classe:Classe):void{
 
-    return this.http.post<Classe>(this.urlBase, classe);
+    console.log(classe);
+
+    this.http.post<Classe>(this.urlBase, classe).subscribe(
+      response => console.log(JSON.stringify(response)),
+      error => console.log(error)
+    );
   }
 
   read():Observable<Classe[]>{

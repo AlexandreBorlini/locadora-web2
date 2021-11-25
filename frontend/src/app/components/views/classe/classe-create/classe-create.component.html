@@ -22,18 +22,19 @@
             <input matInput placeholder="prazodevolucao"
             [(ngModel)]="classe.prazodevolucao" 
             name="prazodevolucao"
-            type="date"
+            type="number"
             style="margin-left: 4px;"> 
         </mat-form-field>
 
     </form>
 </mat-card>
 
-<button mat-raised-button color="primary">
+<button mat-raised-button color="primary" (click) ="criar()">
     Salvar
 </button>
 
 <button mat-raised-button color="primary" 
-style="margin-left: 4px; margin-top: 6px;">
+style="margin-left: 4px; margin-top: 6px;"
+(click) ="cancelar()">
     Cancelar
 </button>

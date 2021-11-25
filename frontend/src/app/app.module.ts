@@ -18,7 +18,9 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AtorCreateComponent } from './components/views/ator/ator-create/ator-create.component';
 import { AtorReadComponent } from './components/views/ator/ator-read/ator-read.component';
@@ -106,8 +108,10 @@ import { LocacaoUpdateComponent } from './components/views/locacao/locacao-updat
     MatTableModule,
     FormsModule,
     MatFormFieldModule,
+    MatInputModule,
     CommonModule,
-    MatSelectModule 
+    MatSelectModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

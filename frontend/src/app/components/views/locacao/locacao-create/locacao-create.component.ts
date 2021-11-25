@@ -3,6 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { Cliente } from 'src/app/components/models/atendimento/cliente';
 import { Item } from 'src/app/components/models/controle/item';
 import { Titulo } from 'src/app/components/models/controle/titulo';
+import { Router } from '@angular/router';
+import { TituloService } from 'src/app/components/service/titulo.service';
+import { ItemService } from 'src/app/components/service/item.service';
+import { ClienteService } from 'src/app/components/service/cliente.service';
 
 @Component({
   selector: 'app-locacao-create',
@@ -19,23 +23,23 @@ export class LocacaoCreateComponent implements OnInit {
   locacao!:Locacao;
 
 
-  constructor() { }
+  constructor(private router: Router, private tituloService: TituloService, private itemService: ItemService,
+    private clienteService:ClienteService) { }
 
   ngOnInit(): void {
 
-    this.clientes = [
-      {numinscricao: 0, nome:'Cliente01', estahativo: true, datanascimento: new Date(), sexo:'m' }
-    ];
+    this.clienteService.read().subscribe(clientes =>{
+      this.clientes = clientes;
+    });
 
-    this.titulos = [
-      { id: 1, nome: "Nome01", ano: new Date(), sinopse: "Sinopse01", categoria: "Categoria01", diretor: "Diretor01", classe: "Classe01", 
-        atores: ["Ator01"]
-      }];
+    this.tituloService.read().subscribe(titulos =>{
+      this.titulos = titulos;
+    });
 
-    this.itens = [
-      {id: 1, titulo: this.titulos[0], dtaquisicao: new Date(), numserie: 0, tipoItem: "Tipo01"},
-    ];
-
+    this.itemService.read().subscribe(itens =>{
+      this.itens = itens;
+    });
+    
     this.locacao = {
 
       id: 0,
@@ -48,5 +52,8 @@ export class LocacaoCreateComponent implements OnInit {
       item: this.item
     }
  }
+ 
+ create():void{ 
+  }
 
 }

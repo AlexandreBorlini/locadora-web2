@@ -1,3 +1,4 @@
+import { ClasseService } from './../../../service/classe.service';
 import { Classe } from './../../../models/controle/classe';
 import { Component, OnInit } from '@angular/core';
 
@@ -11,7 +12,7 @@ export class ClasseReadComponent implements OnInit {
   classes!: Classe[];
   colunas = ['ID', 'Nome', 'Valor', 'PrazoDevolucao', 'Acao']
 
-  constructor() { }
+  constructor(private classeService: ClasseService) { }
 
   ngOnInit(): void {
 
@@ -19,7 +20,7 @@ export class ClasseReadComponent implements OnInit {
       id:0,
       nome: 'classe01',
       valor: 300,
-      prazodevolucao: new Date()
+      prazodevolucao: 0
     }]
   }
 

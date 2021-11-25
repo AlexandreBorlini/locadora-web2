@@ -13,9 +13,12 @@ export class ClienteService {
   constructor(private http: HttpClient) { }
 
   
-  create(cliente:Cliente):Observable<Cliente>{
+  create(cliente:Cliente):void{
 
-    return this.http.post<Cliente>(this.urlBase, cliente);
+    this.http.post<Cliente>(this.urlBase, cliente).subscribe(
+      response => console.log(JSON.stringify(response)),
+      error => console.log(error)
+    );
   }
 
   read():Observable<Cliente[]>{

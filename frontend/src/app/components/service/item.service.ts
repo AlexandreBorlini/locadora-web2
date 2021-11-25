@@ -13,9 +13,12 @@ export class ItemService {
   constructor(private http: HttpClient) { }
 
   
-  create(item:Item):Observable<Item>{
+  create(item:Item):void{
 
-    return this.http.post<Item>(this.urlBase, item);
+    this.http.post<Item>(this.urlBase, item).subscribe(
+      response => console.log(JSON.stringify(response)),
+      error => console.log(error)
+    );
   }
 
   read():Observable<Item[]>{

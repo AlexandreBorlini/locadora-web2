@@ -3,21 +3,18 @@
     <form>
 
         <mat-form-field style="margin-left: 20px;">
-            <span style="display: inline;">Cpf: </span>
             <input matInput placeholder="CPF"
             [(ngModel)]="socio.cpf" name="cpf"
             style="margin-left: 4px;"> 
         </mat-form-field>
 
         <mat-form-field style="margin-left: 20px;">
-            <span style="display: inline;">Endereço: </span>
             <input matInput placeholder="Endereço"
             [(ngModel)]="socio.endereco" name="endereco"
             style="margin-left: 4px;"> 
         </mat-form-field>
 
         <mat-form-field style="margin-left: 20px;">
-            <span style="display: inline;">Telefone: </span>
             <input matInput placeholder="Telefone"
             [(ngModel)]="socio.tel" name="telefone"
             style="margin-left: 4px;"> 
@@ -25,22 +22,20 @@
 
         <mat-form-field style="margin-left: 20px;"> 
             <span>Cliente: </span><br>
-            <select>
-                <option *ngFor="let cliente of clientes" [value]="cliente.numinscricao">
+            <mat-select multiple [(ngModel)]="socio.dependentes" name="socio.dependentes">
+                <mat-option *ngFor="let d of clientes" [value]="d">
                   {{cliente.nome}}
-                </option>
-            </select>
+                </mat-option>
+            </mat-select>
         </mat-form-field>
-
-
     </form>
 </mat-card>
 
-<button mat-raised-button color="primary">
+<button mat-raised-button color="primary" (click) ="criar()">
     Salvar
 </button>
 
 <button mat-raised-button color="primary" 
-style="margin-left: 4px; margin-top: 6px;">
+style="margin-left: 4px; margin-top: 6px;" (click) ="cancelar()">
     Cancelar
 </button>

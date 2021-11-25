@@ -1,6 +1,9 @@
+import { ItemService } from './../../../service/item.service';
 import { Item } from './../../../models/controle/item';
 import { Titulo } from 'src/app/components/models/controle/titulo';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { TituloService } from 'src/app/components/service/titulo.service';
 
 @Component({
   selector: 'app-item-create',
@@ -13,20 +16,13 @@ export class ItemCreateComponent implements OnInit {
   titulo!:Titulo;
   titulos!:Titulo[];
 
-  constructor() { }
+  constructor(private router: Router, private itemService: ItemService, private tituloService: TituloService) { }
 
   ngOnInit(): void {
 
-    this.titulos = [{
-      id:0,
-      ano: new Date(),
-      nome:'Titulo01',
-      sinopse:'Sinopse01',
-      categoria:'Categoria01',
-      diretor:'Diretor01',
-      classe:'Classe01',
-      atores:['Ator01', 'Ator02']
-    }];
+    this.tituloService.read().subscribe(titulos =>{
+      this.titulos = titulos;
+  });
 
     this.item = {
         id: 0,
@@ -35,6 +31,18 @@ export class ItemCreateComponent implements OnInit {
         tipoItem: "Tipo",
         titulo: this.titulo
     };
+  }
+
+  criar():void{
+
+    console.log(this.titulo);
+
+    this.itemService.create(this.item);
+    this.router.navigate(['/item']);
+  }
+
+  cancelar():void{
+    this.router.navigate(['/item']);
   }
 
 }

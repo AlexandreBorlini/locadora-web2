@@ -1,5 +1,6 @@
 import { Classe } from './../../../models/controle/classe';
 import { Component, OnInit } from '@angular/core';
+import { ClasseService } from 'src/app/components/service/classe.service';
 
 @Component({
   selector: 'app-classe-update',
@@ -10,12 +11,12 @@ export class ClasseUpdateComponent implements OnInit {
 
   classe:Classe = {
     id:0,
-    prazodevolucao:new Date(),
+    prazodevolucao:0,
     valor:0,
     nome:""
   };
 
-  constructor() { }
+  constructor(private classeService: ClasseService) { }
 
   ngOnInit(): void {
   }

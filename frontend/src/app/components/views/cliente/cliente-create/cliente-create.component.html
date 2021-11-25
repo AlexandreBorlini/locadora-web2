@@ -20,6 +20,7 @@
         <mat-form-field style="margin-left: 20px;">
             <span>Data de Nascimento: </span>
             <input
+            matInput 
             [(ngModel)]="cliente.datanascimento" 
             name="datanascimento"
             type="date"
@@ -29,6 +30,7 @@
         <mat-form-field style="margin-left: 20px;">
             <span>Sexo: </span>
             <input
+            matInput 
             [(ngModel)]="cliente.sexo" 
             name="sexo"
             type="text"
@@ -46,12 +48,14 @@
 
     </form>
 
-    <button mat-raised-button color="primary">
+    <button mat-raised-button color="primary"
+    (click) ="criar()">
         Salvar
     </button>
     
     <button mat-raised-button color="primary" 
-    style="margin-left: 4px; margin-top: 6px;">
+    style="margin-left: 4px; margin-top: 6px;"
+    (click) ="cancelar()">
         Cancelar
     </button>
 </mat-card>

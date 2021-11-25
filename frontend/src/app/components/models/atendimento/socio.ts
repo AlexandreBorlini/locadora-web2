@@ -1,8 +1,8 @@
 import { Cliente } from "./cliente";
 
-export interface Socio{
+export interface Socio extends Cliente{
     cpf:String,
     endereco:String,
     tel:String,
-    cliente: Cliente
+    dependentes: Cliente[]
 };

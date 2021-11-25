@@ -27,7 +27,12 @@ export class SocioUpdateComponent implements OnInit {
       cpf:'',
       endereco: '',
       tel:'',
-      cliente: this.cliente
+      numinscricao:0,
+      estahativo:true,
+      nome:'',
+      datanascimento:new Date(),
+      sexo:'',
+      dependentes: []
     };
   }
 }

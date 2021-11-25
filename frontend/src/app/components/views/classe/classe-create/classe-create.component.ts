@@ -1,5 +1,7 @@
 import { Classe } from './../../../models/controle/classe';
 import { Component, OnInit } from '@angular/core';
+import { ClasseService } from 'src/app/components/service/classe.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-classe-create',
@@ -10,14 +12,22 @@ export class ClasseCreateComponent implements OnInit {
 
   classe:Classe = {
     id:0,
-    prazodevolucao:new Date(),
+    prazodevolucao:0,
     valor:0,
     nome:""
   };
 
-  constructor() { }
+  constructor(private router: Router, private classeService: ClasseService) { }
 
   ngOnInit(): void {
   }
 
+  criar():void{
+    this.classeService.create(this.classe);
+    this.router.navigate(['/classe']);
+  }
+
+  cancelar():void{
+    this.router.navigate(['/classe']);
+  }
 }

@@ -13,9 +13,12 @@ export class DiretorService {
   constructor(private http: HttpClient) { }
 
   
-  create(diretor:Diretor):Observable<Diretor>{
+  create(diretor:Diretor):void{
 
-    return this.http.post<Diretor>(this.urlBase, diretor);
+    this.http.post<Diretor>(this.urlBase, diretor).subscribe(
+      response => console.log(JSON.stringify(response)),
+      error => console.log(error)
+    );
   }
 
   read():Observable<Diretor[]>{

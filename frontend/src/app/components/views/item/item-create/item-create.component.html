@@ -27,23 +27,23 @@
             style="margin-left: 4px;"> 
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field style="margin-left: 20px;">
             <span>Título: </span><br>
-            <select name="titulo" style="width: 70px;">
-                <option *ngFor="let titulo of titulos" [value]="titulo.id">
+            <mat-select name="titulo" [(ngModel)]="item.titulo" name="item.titulo">
+                <mat-option *ngFor="let titulo of titulos" [value]="titulo">
                   {{titulo.nome}}
-                </option>
-            </select>
+                </mat-option>
+            </mat-select>
         </mat-form-field> 
 
     </form>
 </mat-card>
 
-<button mat-raised-button color="primary">
+<button mat-raised-button color="primary" (click) ="criar()">
     Salvar
 </button>
 
 <button mat-raised-button color="primary" 
-style="margin-left: 4px; margin-top: 6px;">
+style="margin-left: 4px; margin-top: 6px;" (click) ="cancelar()">
     Cancelar
 </button>

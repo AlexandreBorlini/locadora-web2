@@ -26,10 +26,15 @@ export class SocioReadComponent implements OnInit {
     }
 
     this.socios = [{
-      cpf:'cpf01',
-      endereco:'Endereco01',
-      tel:'Telefone01',
-      cliente: this.cliente
+      cpf:'',
+      endereco: '',
+      tel:'',
+      numinscricao:0,
+      estahativo:true,
+      nome:'',
+      datanascimento:new Date(),
+      sexo:'',
+      dependentes: []
     }]
   }
 

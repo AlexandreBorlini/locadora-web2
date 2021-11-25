@@ -13,9 +13,12 @@ export class AtorService {
   constructor(private http: HttpClient) { }
 
   
-  create(ator:Ator):Observable<Ator>{
+  create(ator:Ator):void{
 
-    return this.http.post<Ator>(this.urlBase, ator);
+    var x = this.http.post<Ator>(this.urlBase, ator).subscribe(
+      response => console.log(JSON.stringify(response)),
+      error => console.log(error)
+    );
   }
 
   read():Observable<Ator[]>{

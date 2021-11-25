@@ -1,5 +1,7 @@
+import { DiretorService } from './../../../service/diretor.service';
 import { Component, OnInit } from '@angular/core';
 import {Diretor} from '../../../models/controle/diretor'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-diretor-create',
@@ -14,9 +16,18 @@ export class DiretorCreateComponent implements OnInit {
     nome:""
   };
 
-  constructor() { }
+  constructor(private router: Router, private diretorService: DiretorService) { }
 
   ngOnInit(): void {
+  }
+
+  criar():void{
+    this.diretorService.create(this.diretor);
+    this.router.navigate(['/diretor']);
+  }
+
+  cancelar():void{
+    this.router.navigate(['/diretor']);
   }
 
 }

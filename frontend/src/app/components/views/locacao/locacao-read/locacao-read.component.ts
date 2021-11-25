@@ -3,6 +3,10 @@ import { Cliente } from './../../../models/atendimento/cliente';
 import { Locacao } from './../../../models/atendimento/locacao';
 import { Item } from 'src/app/components/models/controle/item';
 import { Component, OnInit } from '@angular/core';
+import { ClienteService } from 'src/app/components/service/cliente.service';
+import { Router } from '@angular/router';
+import { TituloService } from 'src/app/components/service/titulo.service';
+import { ItemService } from 'src/app/components/service/item.service';
 
 @Component({
   selector: 'app-locacao-read',
@@ -12,41 +16,32 @@ import { Component, OnInit } from '@angular/core';
 export class LocacaoReadComponent implements OnInit {
 
   locacoes!: Locacao[];
+
+  titulos!:Titulo[];
+  itens!:Item[];
+  clientes!:Cliente[];
+
   titulo!:Titulo;
   item!:Item;
   cliente!:Cliente;
   colunas = ['ID', 'DataLoc', 'DataDevEfet', 'DataDevPrev', 'ValCobrado', 'MultaCobrada', 'Item', 'Cliente', 'Acao']
 
-  constructor() { }
+  constructor(private router: Router, private tituloService: TituloService, private itemService: ItemService,
+    private clienteService:ClienteService) { }
 
   ngOnInit(): void {
 
-    this.titulo = {
-      id:0,
-      ano: new Date(2001, 1),
-      nome:'Titulo01',
-      sinopse:'Sinopse01',
-      categoria:'Categoria01',
-      diretor:'Diretor01',
-      classe:'Classe01',
-      atores:['Ator01', 'Ator02']
-  };
+    this.clienteService.read().subscribe(clientes =>{
+      this.clientes = clientes;
+    });
 
-    this.cliente = {
-      numinscricao: 0,
-      nome: 'String',
-      estahativo: true,
-      datanascimento: new Date(2001, 1),
-      sexo: 'm'
-    };
+    this.tituloService.read().subscribe(titulos =>{
+      this.titulos = titulos;
+    });
 
-    this.item={
-      id:0,
-      numserie: 2,
-      dtaquisicao: new Date(2001, 1),
-      tipoItem: "String",
-      titulo: this.titulo
-    };
+    this.itemService.read().subscribe(itens =>{
+      this.itens = itens;
+    });
 
     this.locacoes = [{
       datalocacao: new Date(2001, 1),

@@ -18,10 +18,9 @@ export class AtorReadComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.atores = [{
-      nome: "Ator01",
-      id:0
-    }]
+    this.atorService.read().subscribe(atores =>{
+      this.atores = atores;
+    });
   }
 
   delete(id: String): void{

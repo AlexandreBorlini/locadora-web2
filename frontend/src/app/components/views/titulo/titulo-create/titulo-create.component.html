@@ -20,6 +20,7 @@
         <mat-form-field style="margin-left: 20px;">
             <span>Sinopse: </span>
             <input
+            matInput
             [(ngModel)]="titulo.sinopse" 
             name="sinopse"
             type="text"
@@ -29,6 +30,7 @@
         <mat-form-field>
             <span>Categoria: </span>
             <input
+            matInput
             [(ngModel)]="titulo.categoria" 
             name="categoria"
             type="text"
@@ -37,36 +39,36 @@
 
         <mat-form-field style="margin-left: 20px;">
             <span>Diretor: </span>
-            <select>
-                <option *ngFor="let diretor of diretores" [value]="diretor.id">
+            <mat-select [(ngModel)]="titulo.diretor" name="titulo.diretor">
+                <mat-option *ngFor="let diretor of diretores" [value]="diretor">
                   {{diretor.nome}}
-                </option>
-            </select>
+                </mat-option>
+            </mat-select>
         </mat-form-field> 
 
-        <mat-form-field>
+        <mat-form-field style="margin-left: 20px;">
             <span>Classe</span>
-            <select>
-                <option *ngFor="let classe of classes" [value]="classe.id">
+            <mat-select [(ngModel)]="titulo.classe" name="titulo.classe">
+                <mat-option *ngFor="let classe of classes" [value]="classe">
                   {{classe.nome}}
-                </option>
-            </select>
+                </mat-option>
+            </mat-select>
         </mat-form-field> <br>
 
         <mat-form-field>
         <label for="atoresSelecionados">Atores: </label>
-        <select multiple [(ngModel)]="atoresSelecionados" name="atoresSelecionados" id="atoresSelecionados" style="height: 200px; width: 150px;">
-            <option *ngFor="let ator of atores" [value]="ator.id">{{ator.nome}}</option>
-        </select>
-    </mat-form-field>
+        <mat-select multiple [(ngModel)]="atoresSelecionados" name="atoresSelecionados" id="atoresSelecionados" style="height: 200px; width: 150px;">
+            <mat-option *ngFor="let ator of atores" [value]="ator">{{ator.nome}}</mat-option>
+        </mat-select>
+        </mat-form-field>
 
     </form>
 </mat-card>
-<button mat-raised-button color="primary">
+<button mat-raised-button color="primary" (click) ="criar()">
     Salvar
 </button>
 
 <button mat-raised-button color="primary" 
-style="margin-left: 4px; margin-top: 6px;">
+style="margin-left: 4px; margin-top: 6px;" (click) ="cancelar()">
     Cancelar
 </button>

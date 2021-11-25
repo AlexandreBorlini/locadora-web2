@@ -12,9 +12,12 @@ export class SocioService {
 
   constructor(private http: HttpClient) { }
 
-  create(socio:Socio):Observable<Socio>{
+  create(socio:Socio):void{
 
-    return this.http.post<Socio>(this.urlBase, socio);
+    this.http.post<Socio>(this.urlBase, socio).subscribe(
+      response => console.log(JSON.stringify(response)),
+      error => console.log(error)
+    );
   }
 
   read():Observable<Socio[]>{

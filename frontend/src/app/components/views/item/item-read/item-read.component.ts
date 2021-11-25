@@ -1,6 +1,7 @@
 import { Titulo } from 'src/app/components/models/controle/titulo';
 import { Item } from './../../../models/controle/item';
 import { Component, OnInit } from '@angular/core';
+import { TituloService } from 'src/app/components/service/titulo.service';
 
 @Component({
   selector: 'app-item-read',
@@ -11,23 +12,17 @@ export class ItemReadComponent implements OnInit {
 
   itens!: Item[];
   titulo!:Titulo;
+  titulos!:Titulo[];
 
   colunas = ['id','numserie', 'dtaquisicao', 'tipoitem', 'Acao']
 
-  constructor() { }
+  constructor(private tituloService: TituloService) { }
 
   ngOnInit(): void {
 
-    this.titulo = {
-        id:0,
-        ano: new Date(),
-        nome:'Titulo01',
-        sinopse:'Sinopse01',
-        categoria:'Categoria01',
-        diretor:'Diretor01',
-        classe:'Classe01',
-        atores:['Ator01', 'Ator02']
-    };
+    this.tituloService.read().subscribe(titulos =>{
+      this.titulos = titulos;
+    });
 
     this.itens = [{
       id:0,
