@@ -26,16 +26,22 @@ export class SocioService {
 
   readById(id:String):Observable<Socio>{
 
-    const urlInteira = '${this.urlBase}/${id}';
+    const urlInteira = this.urlBase + '/' + id;
     return this.http.get<Socio>(urlInteira);
   }
 
-  update(socio: Socio):Observable<Socio>{
-    return this.http.put<Socio>(this.urlBase, socio);
+  update(socio: Socio):void{
+    this.http.put<Socio>(this.urlBase, socio).subscribe(
+      response => console.log(JSON.stringify(response)),
+      error => console.log(error)
+    );
   }  
 
-  delete(id:String):Observable<Socio>{
-    const url = '${this.urlBase}/${id}';
-    return this.http.delete<Socio>(url);
+  delete(id:String):void{
+    const url = this.urlBase + '/' + id;
+    this.http.delete<Socio>(url).subscribe(
+      response => console.log(JSON.stringify(response)),
+      error => console.log(error)
+    );
   }
 }

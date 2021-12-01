@@ -3,32 +3,32 @@
     <form>
 
         <mat-form-field>
-            <span>Nome: </span>
             <input matInput placeholder="Nome"
             [(ngModel)]="titulo.nome" name="name"
             style="margin-left: 4px;"> 
         </mat-form-field>
 
         <mat-form-field style="margin-left: 20px;">
-            <span>Ano: </span>
-            <input matInput placeholder="Valor"
-            [(ngModel)]="titulo.ano" name="numinscricao"
+            <input matInput placeholder="Valor" placeholder="Ano"
+            [ngModel]="titulo.ano | date:'yyyy-MM-dd'" name="numinscricao"
             type="date"
             style="margin-left: 4px;"> 
         </mat-form-field>
 
         <mat-form-field style="margin-left: 20px;">
-            <span>Sinopse: </span>
             <input
+            matInput
+            placeholder="Sinopse"
             [(ngModel)]="titulo.sinopse" 
             name="sinopse"
             type="text"
             style="margin-left: 4px;"> 
         </mat-form-field>
     
-        <mat-form-field>
-            <span>Categoria: </span>
+        <mat-form-field style="margin-left: 20px;">
             <input
+            matInput
+            placeholder="Categoria"
             [(ngModel)]="titulo.categoria" 
             name="categoria"
             type="text"
@@ -36,37 +36,34 @@
         </mat-form-field>
 
         <mat-form-field style="margin-left: 20px;">
-            <span>Diretor: </span>
-            <select>
-                <option *ngFor="let diretor of diretores" [value]="diretor.id">
+            <mat-select [(ngModel)]="titulo.diretor" name="titulo.diretor" placeholder="Diretor"> 
+                <mat-option *ngFor="let diretor of diretores" [value]="diretor">
                   {{diretor.nome}}
-                </option>
-            </select>
+                </mat-option>
+            </mat-select>
         </mat-form-field> 
 
-        <mat-form-field>
-            <span>Classe</span>
-            <select>
-                <option *ngFor="let classe of classes" [value]="classe.id">
+        <mat-form-field style="margin-left: 20px;">
+            <mat-select [(ngModel)]="titulo.classe" name="titulo.classe" placeholder="Classe">
+                <mat-option *ngFor="let classe of classes" [value]="classe">
                   {{classe.nome}}
-                </option>
-            </select>
+                </mat-option>
+            </mat-select>
         </mat-form-field> <br>
 
-        <mat-form-field>
-        <label for="atoresSelecionados">Atores: </label>
-        <select multiple [(ngModel)]="atoresSelecionados" name="atoresSelecionados" id="atoresSelecionados" style="height: 200px; width: 150px;">
-            <option *ngFor="let ator of atores" [value]="ator.id">{{ator.nome}}</option>
-        </select>
-    </mat-form-field>
+        <mat-form-field  style="width: 400px;">
+            <mat-select multiple [(ngModel)]="atoresSelecionados" placeholder="Atores Selecionados" name="atoresSelecionados" id="atoresSelecionados">
+                <mat-option *ngFor="let ator of atores" [value]="ator">{{ator.nome}}</mat-option>
+            </mat-select>
+        </mat-form-field>
 
     </form>
 </mat-card>
-<button mat-raised-button color="primary">
+<button mat-raised-button color="primary" (click)="atualizar()">
     Atualizar
 </button>
 
 <button mat-raised-button color="primary" 
-style="margin-left: 4px; margin-top: 6px;">
+style="margin-left: 4px; margin-top: 6px;" (click)="cancelar()">
     Cancelar
 </button>

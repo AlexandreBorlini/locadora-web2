@@ -27,16 +27,22 @@ export class DiretorService {
 
   readById(id:String):Observable<Diretor>{
 
-    const urlInteira = '${this.urlBase}/${id}';
+    const urlInteira = this.urlBase + '/' + id;
     return this.http.get<Diretor>(urlInteira);
   }
 
-  update(diretor: Diretor):Observable<Diretor>{
-    return this.http.put<Diretor>(this.urlBase, diretor);
+  update(diretor: Diretor):void{
+    this.http.put<Diretor>(this.urlBase, diretor).subscribe(
+      response => console.log(JSON.stringify(response)),
+      error => console.log(error)
+    );
   }  
 
-  delete(id:String):Observable<Diretor>{
-    const url = '${this.urlBase}/${id}';
-    return this.http.delete<Diretor>(url);
+  delete(id:String):void{
+    const url = this.urlBase + '/' + id;
+     this.http.delete<Diretor>(url).subscribe(
+      response => console.log(JSON.stringify(response)),
+      error => console.log(error)
+    );
   }
 }

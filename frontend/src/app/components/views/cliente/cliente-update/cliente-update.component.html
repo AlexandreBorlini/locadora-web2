@@ -1,57 +1,56 @@
 <mat-card>
     <mat-card-title>Atualizar Cliente</mat-card-title>
     <form>
-
         <mat-form-field>
-            <span>Nome: </span>
             <input matInput placeholder="Nome"
+            placeholder="Nome"
             [(ngModel)]="cliente.nome" name="name"
             style="margin-left: 4px;"> 
         </mat-form-field>
 
         <mat-form-field style="margin-left: 20px;">
-            <span>Numero de Inscrição: </span>
-            <input matInput placeholder="Valor"
+            <input matInput placeholder="Número de Inscrição"
             [(ngModel)]="cliente.numinscricao" name="numinscricao"
             type="number"
             style="margin-left: 4px;"> 
         </mat-form-field>
 
         <mat-form-field style="margin-left: 20px;">
-            <span>Data de Nascimento: </span>
             <input
-            [(ngModel)]="cliente.datanascimento" 
+            matInput 
+            placeholder="Data de Nascimento"
+            [ngModel]="cliente.datanascimento | date:'yyyy-MM-dd'" 
             name="datanascimento"
             type="date"
             style="margin-left: 4px;"> 
         </mat-form-field>
     
         <mat-form-field style="margin-left: 20px;">
-            <span>Sexo: </span>
             <input
+            matInput 
+            placeholder="Sexo"
             [(ngModel)]="cliente.sexo" 
             name="sexo"
             type="text"
             style="margin-left: 4px;"> 
         </mat-form-field>
 
-        <mat-form-field style="margin-left: 20px;">
+        <section  style="margin-left: 20px; margin-bottom: 20px;">
             <span>Está Ativo: </span>
-            <input
+            <mat-checkbox 
             [(ngModel)]="cliente.estahativo" 
             name="ativo"
-            type="checkbox"
-            style="margin-left: 4px;"> 
-        </mat-form-field>
+            style="margin-left: 4px;"></mat-checkbox> 
+        </section >
 
     </form>
 
-    <button mat-raised-button color="primary">
+    <button mat-raised-button color="primary" (click) ="atualizar()">
         Atualizar
     </button>
     
     <button mat-raised-button color="primary" 
-    style="margin-left: 4px; margin-top: 6px;">
+    style="margin-left: 4px; margin-top: 6px;" (click) ="cancelar()">
         Cancelar
     </button>
 </mat-card>

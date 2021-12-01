@@ -12,7 +12,7 @@ export class AtorReadComponent implements OnInit {
 
 
   atores: Ator[] = new Array();
-  colunas = ['ID', 'Nome', 'Acao']
+  colunas = ['Nome', 'Acao']
 
   constructor(private atorService: AtorService) { }
 
@@ -23,8 +23,9 @@ export class AtorReadComponent implements OnInit {
     });
   }
 
-  delete(id: String): void{
+  excluir(id:String):void{
     this.atorService.delete(id);
+    window.location.reload();
   }
 
 }

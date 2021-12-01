@@ -3,24 +3,24 @@
     <form>
 
         <mat-form-field>
-            <span>Número de série: </span>
             <input matInput placeholder="Bum.Serie"
             [(ngModel)]="item.numserie" name="numserie"
+            placeholder="Número de série"
             type="number"
             style="margin-left: 4px;"> 
         </mat-form-field>
 
         <mat-form-field style="margin-left: 20px;">
-            <span>Tipo do Item: </span>
             <input matInput placeholder="Tipo"
+            placeholder="Tipo do item"
             [(ngModel)]="item.tipoItem" name="valor"
             type="number"
             style="margin-left: 4px;"> 
         </mat-form-field>
 
         <mat-form-field style="margin-left: 20px;">
-            <span>Data de Aquisição: </span>
             <input matInput
+            placeholder="Data de Aquisição"
             [(ngModel)]="item.dtaquisicao" 
             name="dtaquisicao"
             type="date"
@@ -28,8 +28,7 @@
         </mat-form-field>
 
         <mat-form-field style="margin-left: 20px;">
-            <span>Título: </span><br>
-            <mat-select name="titulo" [(ngModel)]="item.titulo" name="item.titulo">
+            <mat-select name="titulo" [(ngModel)]="item.titulo" name="item.titulo" placeholder="Título">
                 <mat-option *ngFor="let titulo of titulos" [value]="titulo">
                   {{titulo.nome}}
                 </mat-option>

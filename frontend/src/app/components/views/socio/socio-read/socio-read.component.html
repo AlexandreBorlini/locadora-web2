@@ -19,18 +19,41 @@
 
       <ng-container matColumnDef="Nome">
         <th mat-header-cell *matHeaderCellDef>Cliente</th>
-        <td mat-cell *matCellDef="let row">{{row.cliente.nome}}</td>
+        <td mat-cell *matCellDef="let row">{{row.nome}}</td>
       </ng-container>
+
+      <ng-container matColumnDef="NumeroInscricao">
+        <th mat-header-cell *matHeaderCellDef>Numero Inscrição</th>
+        <td mat-cell *matCellDef="let row">{{row.numinscricao}}</td>
+      </ng-container>
+
+        <!-- DataNascimento Column -->
+      <ng-container matColumnDef="DataNascimento">
+        <th mat-header-cell *matHeaderCellDef>Data nascimento</th>
+        <td mat-cell *matCellDef="let row">{{row.datanascimento | date: 'dd-MM-yyyy'}}</td>
+      </ng-container>
+        
+      <!-- Sexo Column -->
+        <ng-container matColumnDef="Sexo">
+            <th mat-header-cell *matHeaderCellDef>Sexo</th>
+            <td mat-cell *matCellDef="let row">{{row.sexo}}</td>
+          </ng-container>
+
+      <!-- EstahAtivo Column -->
+        <ng-container matColumnDef="EstahAtivo">
+            <th mat-header-cell *matHeaderCellDef>Ativo</th>
+            <td mat-cell *matCellDef="let row">{{row.estahativo}}</td>
+          </ng-container>
 
       <ng-container matColumnDef="Acao">
         <th mat-header-cell *matHeaderCellDef>Ações</th>
         <td mat-cell *matCellDef="let row">
-            <a routerLink="/socio-update">
+            <a routerLink="/socio-update/{{row.id}}">
                 <i class="material-icons edit">
                     edit
                 </i>
             </a>
-            <a routerLink="">
+            <a routerLink="" (click)="excluir(row.id)">
                 <i class="material-icons delete">
                     delete
                 </i>

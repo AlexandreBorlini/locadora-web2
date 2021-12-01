@@ -1,6 +1,9 @@
 import { Cliente } from 'src/app/components/models/atendimento/cliente';
 import { Socio } from './../../../models/atendimento/socio';
 import { Component, OnInit } from '@angular/core';
+import { SocioService } from 'src/app/components/service/socio.service';
+import { ClienteService } from 'src/app/components/service/cliente.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-socio-update',
@@ -10,18 +13,12 @@ import { Component, OnInit } from '@angular/core';
 export class SocioUpdateComponent implements OnInit {
 
   socio!:Socio;
-  cliente!:Cliente;
-  clientes!:Cliente[];
+  dependentes!:Cliente[];
 
-  constructor() { }
+  constructor(private router: Router, 
+    private clienteService: ClienteService, private socioService:SocioService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-
-    this.clientes = [
-      {numinscricao: 0, nome:'Cliente01', estahativo: true, datanascimento: new Date(), sexo:'m' }
-    ];
-
-    this.cliente={numinscricao: 0, nome:'Cliente01', estahativo: true, datanascimento: new Date(), sexo:'m' };
 
     this.socio={
       cpf:'',
@@ -34,5 +31,23 @@ export class SocioUpdateComponent implements OnInit {
       sexo:'',
       dependentes: []
     };
+
+    this.clienteService.read().subscribe(clientes =>{
+      this.dependentes = clientes;
+    });
+
+    const id = this.route.snapshot.paramMap.get('id') || "";
+    this.socioService.readById(id).subscribe((resp) =>{
+      this.socio = resp;
+    });
+  }
+
+  atualizar():void{
+    this.socioService.update(this.socio);
+    this.router.navigate(['/socio']);
+  }
+
+  cancelar():void{
+    this.router.navigate(['/socio']);
   }
 }

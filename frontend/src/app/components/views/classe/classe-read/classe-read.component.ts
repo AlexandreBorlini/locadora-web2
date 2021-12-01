@@ -16,12 +16,14 @@ export class ClasseReadComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.classes = [{
-      id:0,
-      nome: 'classe01',
-      valor: 300,
-      prazodevolucao: 0
-    }]
+    this.classeService.read().subscribe(classes =>{
+      this.classes = classes;
+    });
+  }
+
+  excluir(id:String):void{
+    this.classeService.delete(id);
+    //window.location.reload();
   }
 
 }

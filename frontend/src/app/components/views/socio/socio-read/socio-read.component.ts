@@ -1,6 +1,9 @@
+import { ClienteService } from './../../../service/cliente.service';
+import { SocioService } from './../../../service/socio.service';
 import { Socio } from './../../../models/atendimento/socio';
 import { Component, OnInit } from '@angular/core';
 import { Cliente } from 'src/app/components/models/atendimento/cliente';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-socio-read',
@@ -10,32 +13,19 @@ import { Cliente } from 'src/app/components/models/atendimento/cliente';
 export class SocioReadComponent implements OnInit {
 
   socios!: Socio[];
-  cliente!: Cliente;
-  colunas = ['Cpf', 'Endereço', 'Telefone', 'Nome', 'Acao']
+  colunas = ['Cpf', 'Endereço', 'Telefone', 'Nome', 'NumeroInscricao', 'DataNascimento', 'Sexo', 'EstahAtivo', 'Acao']
 
-  constructor() { }
+  constructor(private router: Router, private service: SocioService) { }
 
   ngOnInit(): void {
 
-    this.cliente = {
-      numinscricao: 0,
-      nome: 'String',
-      estahativo: true,
-      datanascimento: new Date(2001, 1),
-      sexo: 'm'
-    }
-
-    this.socios = [{
-      cpf:'',
-      endereco: '',
-      tel:'',
-      numinscricao:0,
-      estahativo:true,
-      nome:'',
-      datanascimento:new Date(),
-      sexo:'',
-      dependentes: []
-    }]
+    this.service.read().subscribe(socios =>{
+      this.socios = socios;
+    });
   }
 
+  excluir(id:String):void{
+    this.service.delete(id);
+    window.location.reload();
+  }
 }

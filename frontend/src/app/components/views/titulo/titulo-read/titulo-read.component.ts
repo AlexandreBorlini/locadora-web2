@@ -16,13 +16,16 @@ export class TituloReadComponent implements OnInit {
   titulos!: Titulo[];
   colunas = ['ID', 'Ano', 'Nome', 'Sinopse', 'Categoria', 'Diretor', 'Classe', 'Atores','Acao']
 
-  constructor(private router: Router, private tituloService: TituloService, 
-    private diretorService: DiretorService, private classeService: ClasseService, private atorService: AtorService) { }
+  constructor(private router: Router, private tituloService: TituloService) { }
 
   ngOnInit(): void {
     this.tituloService.read().subscribe(titulos =>{
       this.titulos = titulos;
     });
+  }
+  excluir(id:String):void{
+    this.tituloService.delete(id);
+    window.location.reload();
   }
 
 }

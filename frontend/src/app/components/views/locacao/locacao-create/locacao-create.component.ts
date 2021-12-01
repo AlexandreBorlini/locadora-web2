@@ -1,3 +1,4 @@
+import { LocacaoService } from './../../../service/locacao.service';
 import { Locacao } from './../../../models/atendimento/locacao';
 import { Component, OnInit } from '@angular/core';
 import { Cliente } from 'src/app/components/models/atendimento/cliente';
@@ -24,7 +25,7 @@ export class LocacaoCreateComponent implements OnInit {
 
 
   constructor(private router: Router, private tituloService: TituloService, private itemService: ItemService,
-    private clienteService:ClienteService) { }
+    private clienteService:ClienteService, private locacaoService:LocacaoService) { }
 
   ngOnInit(): void {
 
@@ -53,7 +54,12 @@ export class LocacaoCreateComponent implements OnInit {
     }
  }
  
- create():void{ 
+ criar():void{ 
+    this.locacaoService.create(this.locacao);
+    this.router.navigate(['/locacao']);
   }
 
+  cancelar():void{
+    this.router.navigate(['/locacao']);
+  }
 }

@@ -27,16 +27,22 @@ export class AtorService {
 
   readById(id:String):Observable<Ator>{
 
-    const urlInteira = '${this.urlBase}/${id}';
+    const urlInteira = this.urlBase + '/' + id;
     return this.http.get<Ator>(urlInteira);
   }
 
-  update(ator: Ator):Observable<Ator>{
-    return this.http.put<Ator>(this.urlBase, ator);
+  update(ator: Ator):void{
+    this.http.put<Ator>(this.urlBase, ator).subscribe(
+      response => console.log(JSON.stringify(response)),
+      error => console.log(error)
+    );
   }  
 
-  delete(id:String):Observable<Ator>{
-    const url = '${this.urlBase}/${id}';
-    return this.http.delete<Ator>(url);
+  delete(id:String):void{
+    const url = this.urlBase + '/' + id;
+     this.http.delete<Ator>(url).subscribe(
+      response => console.log(JSON.stringify(response)),
+      error => console.log(error)
+    );
   }
 }

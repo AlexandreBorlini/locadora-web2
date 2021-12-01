@@ -1,5 +1,7 @@
+import { DiretorService } from './../../../service/diretor.service';
 import { Diretor } from 'src/app/components/models/controle/diretor';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-diretor-update',
@@ -14,9 +16,23 @@ export class DiretorUpdateComponent implements OnInit {
     nome:""
   };
 
-  constructor() { }
+
+  constructor(private router: Router, private service: DiretorService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id') || "";
+    this.service.readById(id).subscribe((resp) =>{
+      this.diretor = resp;
+    });
+  }
+
+  atualizar():void{
+    this.service.update(this.diretor);
+    this.router.navigate(['/diretor']);
+  }
+
+  cancelar():void{
+    this.router.navigate(['/diretor']);
   }
 
 }

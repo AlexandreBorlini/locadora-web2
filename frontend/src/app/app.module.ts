@@ -55,6 +55,8 @@ import { ClienteReadComponent } from './components/views/cliente/cliente-read/cl
 import { ClienteUpdateComponent } from './components/views/cliente/cliente-update/cliente-update.component';
 import { ClienteCreateComponent } from './components/views/cliente/cliente-create/cliente-create.component';
 import { LocacaoUpdateComponent } from './components/views/locacao/locacao-update/locacao-update.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { NgxMaskModule, IConfig } from 'ngx-mask'
 
 @NgModule({
   declarations: [
@@ -111,7 +113,9 @@ import { LocacaoUpdateComponent } from './components/views/locacao/locacao-updat
     MatInputModule,
     CommonModule,
     MatSelectModule,
-    HttpClientModule
+    HttpClientModule,
+    MatCheckboxModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

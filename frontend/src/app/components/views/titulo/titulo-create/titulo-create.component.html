@@ -3,34 +3,32 @@
     <form>
 
         <mat-form-field>
-            <span>Nome: </span>
             <input matInput placeholder="Nome"
             [(ngModel)]="titulo.nome" name="name"
             style="margin-left: 4px;"> 
         </mat-form-field>
 
         <mat-form-field style="margin-left: 20px;">
-            <span>Ano: </span>
-            <input matInput placeholder="Valor"
+            <input matInput placeholder="Valor" placeholder="Ano"
             [(ngModel)]="titulo.ano" name="numinscricao"
             type="date"
             style="margin-left: 4px;"> 
         </mat-form-field>
 
         <mat-form-field style="margin-left: 20px;">
-            <span>Sinopse: </span>
             <input
             matInput
+            placeholder="Sinopse"
             [(ngModel)]="titulo.sinopse" 
             name="sinopse"
             type="text"
             style="margin-left: 4px;"> 
         </mat-form-field>
     
-        <mat-form-field>
-            <span>Categoria: </span>
+        <mat-form-field style="margin-left: 20px;">
             <input
             matInput
+            placeholder="Categoria"
             [(ngModel)]="titulo.categoria" 
             name="categoria"
             type="text"
@@ -38,8 +36,7 @@
         </mat-form-field>
 
         <mat-form-field style="margin-left: 20px;">
-            <span>Diretor: </span>
-            <mat-select [(ngModel)]="titulo.diretor" name="titulo.diretor">
+            <mat-select [(ngModel)]="titulo.diretor" name="titulo.diretor" placeholder="Diretor"> 
                 <mat-option *ngFor="let diretor of diretores" [value]="diretor">
                   {{diretor.nome}}
                 </mat-option>
@@ -47,19 +44,17 @@
         </mat-form-field> 
 
         <mat-form-field style="margin-left: 20px;">
-            <span>Classe</span>
-            <mat-select [(ngModel)]="titulo.classe" name="titulo.classe">
+            <mat-select [(ngModel)]="titulo.classe" name="titulo.classe" placeholder="Classe">
                 <mat-option *ngFor="let classe of classes" [value]="classe">
                   {{classe.nome}}
                 </mat-option>
             </mat-select>
         </mat-form-field> <br>
 
-        <mat-form-field>
-        <label for="atoresSelecionados">Atores: </label>
-        <mat-select multiple [(ngModel)]="atoresSelecionados" name="atoresSelecionados" id="atoresSelecionados" style="height: 200px; width: 150px;">
-            <mat-option *ngFor="let ator of atores" [value]="ator">{{ator.nome}}</mat-option>
-        </mat-select>
+        <mat-form-field  style="width: 400px;">
+            <mat-select multiple [(ngModel)]="atoresSelecionados" placeholder="Atores Selecionados" name="atoresSelecionados" id="atoresSelecionados">
+                <mat-option *ngFor="let ator of atores" [value]="ator">{{ator.nome}}</mat-option>
+            </mat-select>
         </mat-form-field>
 
     </form>

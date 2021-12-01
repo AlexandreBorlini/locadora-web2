@@ -38,13 +38,13 @@ export class TituloCreateComponent implements OnInit {
   ngOnInit(): void {
     this.diretorService.read().subscribe(diretores =>{
       this.diretores = diretores;
-  });
-  this.classeService.read().subscribe(classes =>{
-    this.classes = classes;
-  });
-  this.atorService.read().subscribe(atores =>{
-    this.atores = atores;
-  });
+    });
+    this.classeService.read().subscribe(classes =>{
+      this.classes = classes;
+    });
+    this.atorService.read().subscribe(atores =>{
+      this.atores = atores;
+    });
   }
   
   criar():void{

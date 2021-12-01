@@ -27,16 +27,22 @@ export class LocacaoService {
 
   readById(id:String):Observable<Locacao>{
 
-    const urlInteira = '${this.urlBase}/${id}';
+    const urlInteira = this.urlBase + '/' + id;
     return this.http.get<Locacao>(urlInteira);
   }
 
-  update(locacao: Locacao):Observable<Locacao>{
-    return this.http.put<Locacao>(this.urlBase, locacao);
+  update(locacao: Locacao):void{
+    this.http.put<Locacao>(this.urlBase, locacao).subscribe(
+      response => console.log(JSON.stringify(response)),
+      error => console.log(error)
+    );
   }  
 
-  delete(id:String):Observable<Locacao>{
-    const url = '${this.urlBase}/${id}';
-    return this.http.delete<Locacao>(url);
+  delete(id:String):void{
+    const url = this.urlBase + '/' + id;
+    this.http.delete<Locacao>(url).subscribe(
+      response => console.log(JSON.stringify(response)),
+      error => console.log(error)
+    );
   }
 }

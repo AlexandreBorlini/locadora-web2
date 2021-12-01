@@ -1,9 +1,7 @@
 <mat-card>
     <mat-card-title>Atualizar Diretor</mat-card-title>
     <form>
-
         <mat-form-field style="display: inline;">
-            <span style="display: inline;">Nome: </span>
             <input matInput placeholder="Nome"
             [(ngModel)]="diretor.nome" name="name"
             style="margin-left: 4px;"> 
@@ -12,11 +10,11 @@
     </form>
 </mat-card>
 
-<button mat-raised-button color="primary">
+<button mat-raised-button color="primary" (click) ="atualizar()">
     Atualizar
 </button>
 
 <button mat-raised-button color="primary" 
-style="margin-left: 4px; margin-top: 6px;">
+style="margin-left: 4px; margin-top: 6px;" (click) ="cancelar()">
     Cancelar
 </button>

@@ -13,9 +13,6 @@ export class TituloService {
   constructor(private http: HttpClient) { }
 
   create(titulo:Titulo):void{
-
-    console.log(titulo);
-
     this.http.post<Titulo>(this.urlBase, titulo).subscribe(
       response => console.log(JSON.stringify(response)),
       error => console.log(error)
@@ -28,16 +25,22 @@ export class TituloService {
 
   readById(id:String):Observable<Titulo>{
 
-    const urlInteira = '${this.urlBase}/${id}';
+    const urlInteira = this.urlBase + '/' + id;
     return this.http.get<Titulo>(urlInteira);
   }
 
-  update(titulo: Titulo):Observable<Titulo>{
-    return this.http.put<Titulo>(this.urlBase, titulo);
+  update(titulo: Titulo):void{
+    this.http.put<Titulo>(this.urlBase, titulo).subscribe(
+      response => console.log(JSON.stringify(response)),
+      error => console.log(error)
+    );
   }  
 
-  delete(id:String):Observable<Titulo>{
-    const url = '${this.urlBase}/${id}';
-    return this.http.delete<Titulo>(url);
+  delete(id:String):void{
+    const url = this.urlBase + '/' + id;
+    this.http.delete<Titulo>(url).subscribe(
+      response => console.log(JSON.stringify(response)),
+      error => console.log(error)
+    );
   }
 }

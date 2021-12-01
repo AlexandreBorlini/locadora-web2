@@ -3,42 +3,80 @@
     <form>
 
         <mat-form-field style="margin-left: 20px;">
-            <span style="display: inline;">Cpf: </span>
             <input matInput placeholder="CPF"
             [(ngModel)]="socio.cpf" name="cpf"
             style="margin-left: 4px;"> 
         </mat-form-field>
 
         <mat-form-field style="margin-left: 20px;">
-            <span style="display: inline;">Endereço: </span>
             <input matInput placeholder="Endereço"
             [(ngModel)]="socio.endereco" name="endereco"
             style="margin-left: 4px;"> 
         </mat-form-field>
 
         <mat-form-field style="margin-left: 20px;">
-            <span style="display: inline;">Telefone: </span>
             <input matInput placeholder="Telefone"
+            mask='(00) 000000000'
             [(ngModel)]="socio.tel" name="telefone"
             style="margin-left: 4px;"> 
         </mat-form-field>
 
-        <mat-form-field style="margin-left: 20px;"> 
-            <span>Cliente: </span><br>
-            <select>
-                <option *ngFor="let cliente of clientes" [value]="cliente.numinscricao">
-                  {{cliente.nome}}
-                </option>
-            </select>
+        <mat-form-field>
+            <input matInput placeholder="Nome"
+            placeholder="Nome"
+            [(ngModel)]="socio.nome" name="name"
+            style="margin-left: 4px;"> 
+        </mat-form-field>
+
+        <mat-form-field style="margin-left: 20px;">
+            <input matInput placeholder="Número de Inscrição"
+            [(ngModel)]="socio.numinscricao" name="numinscricao"
+            type="number"
+            style="margin-left: 4px;"> 
+        </mat-form-field>
+
+        <mat-form-field style="margin-left: 20px;">
+            <input
+            matInput 
+            placeholder="Data de Nascimento"
+            [ngModel]="socio.datanascimento | date:'yyyy-MM-dd'" 
+            name="datanascimento"
+            type="date"
+            style="margin-left: 4px;"> 
+        </mat-form-field>
+    
+        <mat-form-field style="margin-left: 20px;">
+            <input
+            matInput 
+            placeholder="Sexo"
+            [(ngModel)]="socio.sexo" 
+            name="sexo"
+            type="text"
+            style="margin-left: 4px;"> 
+        </mat-form-field>
+
+        <section  style="margin-left: 20px; margin-bottom: 20px;">
+            <span>Está Ativo: </span>
+            <mat-checkbox 
+            [(ngModel)]="socio.estahativo" 
+            name="ativo"
+            style="margin-left: 4px;"></mat-checkbox> 
+        </section >
+
+        <mat-form-field style="margin-left: 20px; margin-bottom: 20px; width:500px">
+            <mat-select multiple [(ngModel)]="socio.dependentes" name="socio.dependentes" 
+            id="dependentesSelecionados" placeholder="Dependentes">
+                <mat-option *ngFor="let dependente of dependentes" [value]="dependente">{{dependente.nome}}</mat-option>
+            </mat-select>
         </mat-form-field>
     </form>
 </mat-card>
 
-<button mat-raised-button color="primary">
+<button mat-raised-button color="primary" (click) ="atualizar()">
     Atualizar
 </button>
 
 <button mat-raised-button color="primary" 
-style="margin-left: 4px; margin-top: 6px;">
+style="margin-left: 4px; margin-top: 6px;" (click) ="cancelar()">
     Cancelar
 </button>

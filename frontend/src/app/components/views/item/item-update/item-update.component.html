@@ -3,47 +3,46 @@
     <form>
 
         <mat-form-field>
-            <span>Número de série: </span>
             <input matInput placeholder="Bum.Serie"
             [(ngModel)]="item.numserie" name="numserie"
+            placeholder="Número de série"
             type="number"
             style="margin-left: 4px;"> 
         </mat-form-field>
 
         <mat-form-field style="margin-left: 20px;">
-            <span>Tipo do Item: </span>
             <input matInput placeholder="Tipo"
+            placeholder="Tipo do item"
             [(ngModel)]="item.tipoItem" name="valor"
             type="number"
             style="margin-left: 4px;"> 
         </mat-form-field>
 
         <mat-form-field style="margin-left: 20px;">
-            <span>Data de Aquisição: </span>
             <input matInput
-            [(ngModel)]="item.dtaquisicao" 
+            placeholder="Data de Aquisição"
+            [ngModel]="item.dtaquisicao | date:'yyyy-MM-dd'" 
             name="dtaquisicao"
             type="date"
             style="margin-left: 4px;"> 
         </mat-form-field>
 
-        <mat-form-field>
-            <span>Título: </span><br>
-            <select name="titulo" style="width: 70px;">
-                <option *ngFor="let titulo of titulos" [value]="titulo.id">
+        <mat-form-field style="margin-left: 20px;">
+            <mat-select name="titulo" [(ngModel)]="item.titulo" name="item.titulo" placeholder="Título">
+                <mat-option *ngFor="let titulo of titulos" [value]="titulo">
                   {{titulo.nome}}
-                </option>
-            </select>
+                </mat-option>
+            </mat-select>
         </mat-form-field> 
 
     </form>
 </mat-card>
 
-<button mat-raised-button color="primary">
+<button mat-raised-button color="primary" (click) ="atualizar()">
     Atualizar
 </button>
 
 <button mat-raised-button color="primary" 
-style="margin-left: 4px; margin-top: 6px;">
+style="margin-left: 4px; margin-top: 6px;" (click) ="cancelar()">
     Cancelar
 </button>

@@ -30,12 +30,12 @@
       <ng-container matColumnDef="Acao">
         <th mat-header-cell *matHeaderCellDef>Ações</th>
         <td mat-cell *matCellDef="let row">
-            <a routerLink="/classe-update">
+            <a routerLink="/classe-update/{{row.id}}">
                 <i class="material-icons edit">
                     edit
                 </i>
             </a>
-            <a routerLink="">
+            <a routerLink="" (click)="excluir(row.id)">
                 <i class="material-icons delete">
                     delete
                 </i>

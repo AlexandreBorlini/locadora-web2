@@ -1,11 +1,9 @@
 import { TituloService } from './../../../service/titulo.service';
-import { AtorService } from './../../../service/ator.service';
-import { ClasseService } from './../../../service/classe.service';
 import { Component, OnInit } from '@angular/core';
 import { Item } from 'src/app/components/models/controle/item';
 import { Titulo } from 'src/app/components/models/controle/titulo';
-import { DiretorService } from 'src/app/components/service/diretor.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ItemService } from 'src/app/components/service/item.service';
 
 @Component({
   selector: 'app-item-update',
@@ -18,20 +16,34 @@ export class ItemUpdateComponent implements OnInit {
   titulo!:Titulo;
   titulos!:Titulo[];
 
-  constructor(private router: Router, private tituloService: TituloService) { }
+  constructor(private router: Router, private route: ActivatedRoute,private itemService: ItemService, private tituloService: TituloService) { }
 
   ngOnInit(): void {
 
-    this.tituloService.read().subscribe(titulos =>{
-      this.titulos = titulos;
-    });
-
     this.item = {
-        id: 0,
-        dtaquisicao: new Date(),
-        numserie: 0,
-        tipoItem: "Tipo",
-        titulo: this.titulo
-    };
+      id: 0,
+      dtaquisicao: new Date(),
+      numserie: 0,
+      tipoItem: "Tipo",
+      titulo: this.titulo
+  };
+
+  this.tituloService.read().subscribe(titulos =>{
+      this.titulos = titulos;
+  });
+
+  const id = this.route.snapshot.paramMap.get('id') || "";
+  this.itemService.readById(id).subscribe((resp) =>{
+    this.item = resp;
+  });
+  }
+
+  atualizar():void{
+    this.itemService.update(this.item);
+    this.router.navigate(['/item']);
+  }
+
+  cancelar():void{
+    this.router.navigate(['/item']);
   }
 }

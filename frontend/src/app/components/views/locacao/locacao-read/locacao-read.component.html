@@ -9,17 +9,17 @@
   
       <ng-container matColumnDef="DataLoc">
         <th mat-header-cell *matHeaderCellDef>Data Locação</th>
-        <td mat-cell *matCellDef="let row">{{row.datalocacao.toDateString()}}</td>
+        <td mat-cell *matCellDef="let row">{{row.datalocacao | date: 'dd-MM-yyyy'}}</td>
       </ng-container>
   
       <ng-container matColumnDef="DataDevEfet">
         <th mat-header-cell *matHeaderCellDef>Data Devolução Efetiva</th>
-        <td mat-cell *matCellDef="let row">{{row.dataDevolucaoEfetiva.toDateString()}}</td>
+        <td mat-cell *matCellDef="let row">{{row.dataDevolucaoEfetiva | date: 'dd-MM-yyyy'}}</td>
       </ng-container>
   
       <ng-container matColumnDef="DataDevPrev">
         <th mat-header-cell *matHeaderCellDef>Data Devolução Efetiva</th>
-        <td mat-cell *matCellDef="let row">{{row.dataDevolucaoPrevista.toDateString()}}</td>
+        <td mat-cell *matCellDef="let row">{{row.dataDevolucaoPrevista | date: 'dd-MM-yyyy'}}</td>
       </ng-container>
   
       <ng-container matColumnDef="ValCobrado">
@@ -34,24 +34,24 @@
   
       <ng-container matColumnDef="Item">
         <th mat-header-cell *matHeaderCellDef>Item</th>
-        <td mat-cell *matCellDef="let row">{{row.item.titulo.nome}}</td>
+        <td mat-cell *matCellDef="let row">{{row.item?.titulo.nome || ''}}</td>
       </ng-container>
 
       <ng-container matColumnDef="Cliente">
         <th mat-header-cell *matHeaderCellDef>Item</th>
-        <td mat-cell *matCellDef="let row">{{row.cliente.nome}}</td>
+        <td mat-cell *matCellDef="let row">{{row.cliente?.nome || ''}}</td>
       </ng-container>
 
       <!-- Action Column -->
       <ng-container matColumnDef="Acao">
         <th mat-header-cell *matHeaderCellDef>Ações</th>
         <td mat-cell *matCellDef="let row">
-            <a routerLink="/locacao-update">
+            <a routerLink="/locacao-update/{{row.id}}">
                 <i class="material-icons edit">
                     edit
                 </i>
             </a>
-            <a routerLink="">
+            <a routerLink="/locacao" (click)="excluir(row.id)">
                 <i class="material-icons delete">
                     delete
                 </i>

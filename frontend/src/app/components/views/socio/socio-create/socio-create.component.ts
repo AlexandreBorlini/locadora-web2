@@ -13,8 +13,7 @@ import { Router } from '@angular/router';
 export class SocioCreateComponent implements OnInit {
 
   socio!:Socio;
-  cliente!:Cliente;
-  clientes!:Cliente[];
+  dependentes!:Cliente[];
 
   constructor(private router: Router, 
     private clienteService: ClienteService, private socioService:SocioService) { }
@@ -22,7 +21,7 @@ export class SocioCreateComponent implements OnInit {
   ngOnInit(): void {
 
     this.clienteService.read().subscribe(clientes =>{
-      this.clientes = clientes;
+      this.dependentes = clientes;
     });
 
     this.socio={

@@ -4,7 +4,7 @@ import { Diretor } from './../../../models/controle/diretor';
 import { Component, OnInit } from '@angular/core';
 import { Titulo } from 'src/app/components/models/controle/titulo';
 import { TituloService } from 'src/app/components/service/titulo.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AtorService } from 'src/app/components/service/ator.service';
 import { ClasseService } from 'src/app/components/service/classe.service';
 import { DiretorService } from 'src/app/components/service/diretor.service';
@@ -33,7 +33,7 @@ export class TituloUpdateComponent implements OnInit {
   atoresSelecionados: any;
 
   constructor(private router: Router, private tituloService: TituloService, 
-    private diretorService: DiretorService, private classeService: ClasseService, private atorService: AtorService) { }
+    private diretorService: DiretorService, private classeService: ClasseService, private atorService: AtorService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
 
@@ -46,6 +46,19 @@ export class TituloUpdateComponent implements OnInit {
   this.atorService.read().subscribe(atores =>{
     this.atores = atores;
   });
+
+  const id = this.route.snapshot.paramMap.get('id') || "";
+  this.tituloService.readById(id).subscribe((resp) =>{
+    this.titulo = resp;
+  });
   }
 
+  atualizar():void{
+    this.tituloService.update(this.titulo);
+    this.router.navigate(['/titulo']);
+  }
+
+  cancelar():void{
+    this.router.navigate(['/titulo']);
+  }
 }

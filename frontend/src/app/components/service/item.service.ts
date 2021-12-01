@@ -27,16 +27,22 @@ export class ItemService {
 
   readById(id:String):Observable<Item>{
 
-    const urlInteira = '${this.urlBase}/${id}';
+    const urlInteira = this.urlBase + '/' + id;
     return this.http.get<Item>(urlInteira);
   }
 
-  update(item: Item):Observable<Item>{
-    return this.http.put<Item>(this.urlBase, item);
+  update(item: Item):void{
+    this.http.put<Item>(this.urlBase, item).subscribe(
+      response => console.log(JSON.stringify(response)),
+      error => console.log(error)
+    );
   }  
 
-  delete(id:String):Observable<Item>{
-    const url = '${this.urlBase}/${id}';
-    return this.http.delete<Item>(url);
+  delete(id:String):void{
+    const url = this.urlBase + '/' + id;
+    this.http.delete<Item>(url).subscribe(
+      response => console.log(JSON.stringify(response)),
+      error => console.log(error)
+    );
   }
 }

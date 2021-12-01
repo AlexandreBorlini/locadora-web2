@@ -44,7 +44,7 @@ const routes: Routes = [
     component: DiretorCreateComponent
   },
   {
-    path:"diretor-update",
+    path:"diretor-update/:id",
     component: DiretorUpdateComponent
   },
 
@@ -58,7 +58,7 @@ const routes: Routes = [
     component: AtorCreateComponent
   },
   {
-    path:"ator-update",
+    path:"ator-update/:id",
     component: AtorUpdateComponent
   },
 
@@ -72,7 +72,7 @@ const routes: Routes = [
     component: ItemCreateComponent
   },
   {
-    path:"item-update",
+    path:"item-update/:id",
     component: ItemUpdateComponent
   },
 
@@ -86,7 +86,7 @@ const routes: Routes = [
     component: LocacaoCreateComponent
   },
   {
-    path:"locacao-update",
+    path:"locacao-update/:id",
     component: LocacaoUpdateComponent
   },
 
@@ -100,7 +100,7 @@ const routes: Routes = [
     component: SocioCreateComponent
   },
   {
-    path:"socio-update",
+    path:"socio-update/:id",
     component: SocioUpdateComponent
   },
 
@@ -114,7 +114,7 @@ const routes: Routes = [
     component: TituloCreateComponent
   },
   {
-    path:"titulo-update",
+    path:"titulo-update/:id",
     component: TituloUpdateComponent
   },
 
@@ -128,7 +128,7 @@ const routes: Routes = [
     component: ClasseCreateComponent
   },
   {
-    path:"classe-update",
+    path:"classe-update/:id",
     component: ClasseUpdateComponent
   },
 
@@ -142,7 +142,7 @@ const routes: Routes = [
     component: ClienteCreateComponent
   },
   {
-    path:"cliente-update",
+    path:"cliente-update/:id",
     component: ClienteUpdateComponent
   },
 ];

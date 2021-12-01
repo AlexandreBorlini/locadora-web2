@@ -14,7 +14,7 @@
 
       <ng-container matColumnDef="Ano">
         <th mat-header-cell *matHeaderCellDef>Ano</th>
-        <td mat-cell *matCellDef="let row">{{row.ano}}</td>
+        <td mat-cell *matCellDef="let row">{{row.ano | date:'YYYY'}}</td>
       </ng-container>
 
       <ng-container matColumnDef="Sinopse">
@@ -29,29 +29,31 @@
   
       <ng-container matColumnDef="Diretor">
         <th mat-header-cell *matHeaderCellDef>Diretor</th>
-        <td mat-cell *matCellDef="let row">{{row.diretor}}</td>
+        <td mat-cell *matCellDef="let row">{{row.diretor?.nome || ''}}</td>
       </ng-container>
 
       <ng-container matColumnDef="Classe">
         <th mat-header-cell *matHeaderCellDef>Classe</th>
-        <td mat-cell *matCellDef="let row">{{row.classe}}</td>
+        <td mat-cell *matCellDef="let row">{{row.classe?.nome || ''}}</td>
       </ng-container>
 
       <ng-container matColumnDef="Atores">
         <th mat-header-cell *matHeaderCellDef>Atores</th>
-        <td mat-cell *matCellDef="let row">{{row.atores}}</td>
+        <td mat-cell *matCellDef="let row">
+          <span *ngFor="let ator of row.atores">{{ator.nome}}, </span>
+        </td>
       </ng-container>
 
       <!-- Action Column -->
       <ng-container matColumnDef="Acao">
         <th mat-header-cell *matHeaderCellDef>Ações</th>
         <td mat-cell *matCellDef="let row">
-            <a routerLink="/titulo-update">
+            <a routerLink="/titulo-update/{{row.id}}">
                 <i class="material-icons edit">
                     edit
                 </i>
             </a>
-            <a routerLink="">
+            <a routerLink="" (click)="excluir(row.id)">
                 <i class="material-icons delete">
                     delete
                 </i>

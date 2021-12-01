@@ -1,5 +1,7 @@
+import { ClienteService } from './../../../service/cliente.service';
 import { Cliente } from './../../../models/atendimento/cliente';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cliente-read',
@@ -11,17 +13,19 @@ export class ClienteReadComponent implements OnInit {
   clientes!: Cliente[];
   colunas = ['NumeroInscricao', 'Nome', 'DataNascimento', 'Sexo', 'EstahAtivo', 'Acao'];
 
-  constructor() { }
+  constructor(private router: Router, private clienteService: ClienteService) { }
 
   ngOnInit(): void {
 
-    this.clientes = [{
-      numinscricao: 0,
-      nome: 'Cliente01',
-      datanascimento: new Date(),
-      sexo: 'm',
-      estahativo: false
-    }]
+    this.clienteService.read().subscribe(clientes =>{
+      console.log(clientes);
+      this.clientes = clientes;
+    });
+  }
+
+  excluir(id:String):void{
+    this.clienteService.delete(id);
+    window.location.reload();
   }
 
 }

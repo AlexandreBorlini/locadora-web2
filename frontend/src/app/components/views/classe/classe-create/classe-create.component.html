@@ -3,14 +3,12 @@
     <form>
 
         <mat-form-field>
-            <span>Nome: </span>
             <input matInput placeholder="Nome"
             [(ngModel)]="classe.nome" name="name"
             style="margin-left: 4px;"> 
         </mat-form-field>
 
         <mat-form-field style="margin-left: 20px;">
-            <span>Valor: </span>
             <input matInput placeholder="Valor"
             [(ngModel)]="classe.valor" name="valor"
             type="number"
@@ -18,8 +16,7 @@
         </mat-form-field>
 
         <mat-form-field style="margin-left: 20px;">
-            <span>Prazo Devolução: </span>
-            <input matInput placeholder="prazodevolucao"
+            <input matInput placeholder="Prazo de Devolucao"
             [(ngModel)]="classe.prazodevolucao" 
             name="prazodevolucao"
             type="number"

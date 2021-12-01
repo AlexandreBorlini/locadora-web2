@@ -27,16 +27,22 @@ export class ClienteService {
 
   readById(id:String):Observable<Cliente>{
 
-    const urlInteira = '${this.urlBase}/${id}';
+    const urlInteira = this.urlBase + '/' + id;
     return this.http.get<Cliente>(urlInteira);
   }
 
-  update(cliente: Cliente):Observable<Cliente>{
-    return this.http.put<Cliente>(this.urlBase, cliente);
+  update(cliente: Cliente):void{
+    this.http.put<Cliente>(this.urlBase, cliente).subscribe(
+      response => console.log(JSON.stringify(response)),
+      error => console.log(error)
+    );
   }  
 
-  delete(id:String):Observable<Cliente>{
-    const url = '${this.urlBase}/${id}';
-    return this.http.delete<Cliente>(url);
+  delete(id:String):void{
+    const url = this.urlBase + '/' + id;
+     this.http.delete<Cliente>(url).subscribe(
+      response => console.log(JSON.stringify(response)),
+      error => console.log(error)
+    );
   }
 }

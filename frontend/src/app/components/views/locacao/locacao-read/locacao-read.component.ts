@@ -1,3 +1,4 @@
+import { LocacaoService } from './../../../service/locacao.service';
 import { Titulo } from 'src/app/components/models/controle/titulo';
 import { Cliente } from './../../../models/atendimento/cliente';
 import { Locacao } from './../../../models/atendimento/locacao';
@@ -16,43 +17,20 @@ import { ItemService } from 'src/app/components/service/item.service';
 export class LocacaoReadComponent implements OnInit {
 
   locacoes!: Locacao[];
-
-  titulos!:Titulo[];
-  itens!:Item[];
-  clientes!:Cliente[];
-
-  titulo!:Titulo;
-  item!:Item;
-  cliente!:Cliente;
   colunas = ['ID', 'DataLoc', 'DataDevEfet', 'DataDevPrev', 'ValCobrado', 'MultaCobrada', 'Item', 'Cliente', 'Acao']
 
-  constructor(private router: Router, private tituloService: TituloService, private itemService: ItemService,
-    private clienteService:ClienteService) { }
+  constructor(private router: Router, private locacaoService: LocacaoService) { }
 
   ngOnInit(): void {
 
-    this.clienteService.read().subscribe(clientes =>{
-      this.clientes = clientes;
+    this.locacaoService.read().subscribe(locacao =>{
+      this.locacoes = locacao;
     });
+  }
 
-    this.tituloService.read().subscribe(titulos =>{
-      this.titulos = titulos;
-    });
-
-    this.itemService.read().subscribe(itens =>{
-      this.itens = itens;
-    });
-
-    this.locacoes = [{
-      datalocacao: new Date(2001, 1),
-      dataDevolucaoEfetiva: new Date('10/05/1999'),
-      dataDevolucaoPrevista: new Date('10/05/1999'),
-      valorCobrado: 100,
-      multaCobrada: 7200,
-      id: 0,
-      item:this.item,
-      cliente:this.cliente
-    }]
+  excluir(id:String):void{
+    this.locacaoService.delete(id);
+    window.location.reload();
   }
 
 }

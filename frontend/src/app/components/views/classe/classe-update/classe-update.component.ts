@@ -1,6 +1,7 @@
+import { ClasseService } from './../../../service/classe.service';
 import { Classe } from './../../../models/controle/classe';
 import { Component, OnInit } from '@angular/core';
-import { ClasseService } from 'src/app/components/service/classe.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-classe-update',
@@ -16,9 +17,22 @@ export class ClasseUpdateComponent implements OnInit {
     nome:""
   };
 
-  constructor(private classeService: ClasseService) { }
+  constructor(private router: Router, private service: ClasseService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id') || "";
+    this.service.readById(id).subscribe((resp) =>{
+      this.classe = resp;
+    });
+  }
+
+  atualizar():void{
+    this.service.update(this.classe);
+    this.router.navigate(['/classe']);
+  }
+
+  cancelar():void{
+    this.router.navigate(['/classe']);
   }
 
 }

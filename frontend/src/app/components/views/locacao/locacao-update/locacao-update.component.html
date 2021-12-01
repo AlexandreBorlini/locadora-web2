@@ -3,7 +3,6 @@
     <form>
         
         <mat-form-field>
-            <span>Valor Cobrado: </span>
             <input matInput placeholder="Valor"
             [(ngModel)]="locacao.valorCobrado" name="valor"
             type="number"
@@ -11,63 +10,60 @@
         </mat-form-field>
 
         <mat-form-field style="margin-left: 20px;">
-            <span>Data Devolução Efetiva: </span>
-            <input matInput placeholder="Valor"
-            [(ngModel)]="locacao.dataDevolucaoEfetiva" name="dataDevolucaoEfetiva"
+            <input matInput placeholder="Data Devolução Efetiva"
+            [ngModel]="locacao.dataDevolucaoEfetiva | date:'yyyy-MM-dd'" name="dataDevolucaoEfetiva"
             type="date"
             style="margin-left: 4px;"> 
         </mat-form-field>
 
         <mat-form-field style="margin-left: 20px;">
-            <span>Data Devolução Prevista: </span>
-            <input
-            [(ngModel)]="locacao.dataDevolucaoPrevista" 
+            <input matInput
+            placeholder="Data Devolução Prevista"
+            [ngModel]="locacao.dataDevolucaoPrevista | date:'yyyy-MM-dd'" 
             name="dataDevolucaoPrevista"
             type="date"
             style="margin-left: 4px;"> 
         </mat-form-field>
     
-        <mat-form-field>
-            <span>Data Locação: </span>
-            <input
-            [(ngModel)]="locacao.datalocacao" 
+        <mat-form-field style="margin-left: 20px;">
+            <input matInput
+            placeholder="Data Locação"
+            [ngModel]="locacao.datalocacao | date:'yyyy-MM-dd'" 
             name="dataLocacao"
             type="date"
             style="margin-left: 4px;"> 
         </mat-form-field>
 <br>
         <mat-form-field>
-            <span>Multa Cobrada: </span>
             <input matInput
+            placeholder="Multa Cobrada"
             [(ngModel)]="locacao.multaCobrada" name="multaCobrada"
             style="margin-left: 4px;"> 
         </mat-form-field>
 
         <mat-form-field style="margin-left: 20px;">
-            <span>Item: </span>
-            <select>
-                <option *ngFor="let item of itens" [value]="item.id">
+            <mat-select placeholder="Item" [(value)]="locacao.item">
+                <mat-option *ngFor="let item of itens" [value]="item">
                   {{item.titulo.nome}}
-                </option>
-            </select>
+                </mat-option>
+            </mat-select>
         </mat-form-field> 
 
-        <mat-form-field>
-            <span>Cliente</span>
-            <select>
-                <option *ngFor="let cliente of clientes" [value]="cliente.numinscricao">
+        <mat-form-field style="margin-left: 20px;">
+            <mat-select placeholder="Cliente" [(value)]="locacao.cliente">
+                <mat-option *ngFor="let cliente of clientes" [value]="cliente">
                   {{cliente.nome}}
-                </option>
-            </select>
+                </mat-option>
+            </mat-select>
         </mat-form-field>
 
     </form>
 </mat-card>
-<button mat-raised-button color="primary">
+<button mat-raised-button color="primary" (click) ="atualizar()">
     Atualizar
 </button>
 
 <button mat-raised-button color="primary" 
-style="margin-left: 4px; margin-top: 6px;">
+style="margin-left: 4px; margin-top: 6px;" (click) ="cancelar()">
     Cancelar
 </button>
