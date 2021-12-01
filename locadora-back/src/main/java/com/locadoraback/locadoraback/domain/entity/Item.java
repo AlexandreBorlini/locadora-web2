@@ -20,7 +20,7 @@ public class Item {
 
     @ManyToOne
     @NotNull
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "idTitulo")
     private Titulo titulo;
 
     public Long getNumeroSerie() {

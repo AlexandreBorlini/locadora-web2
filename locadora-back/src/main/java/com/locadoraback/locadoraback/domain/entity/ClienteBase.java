@@ -1,5 +1,6 @@
 package com.locadoraback.locadoraback.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sun.istack.NotNull;
 
 import javax.persistence.MappedSuperclass;
@@ -12,15 +13,18 @@ public class ClienteBase {
     private String nome;
 
     @NotNull
+    @JsonProperty("numinscricao")
     private Long numInscricao;
 
     @NotNull
+    @JsonProperty("datanascimento")
     private Date dataNascimento;
 
     @NotNull
     private String sexo;
 
     @NotNull
+    @JsonProperty("estahativo")
     private Boolean ativo;
 
     public String getNome() {
